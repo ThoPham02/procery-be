@@ -1,0 +1,22 @@
+import "model.api"
+
+type (
+	LoginReq {
+		Username string `form:"username"`
+		Password string `form:"password"`
+	}
+
+	LoginRes {
+		Result Result `json:"result"`
+		User   User   `json:"user"`
+		Token  Token  `json:"token"`
+	}
+)
+
+service account-api {
+	@doc(
+		summary: Login API
+	)
+	@handler LoginHandler
+	post /user/login (LoginReq) returns(LoginRes)
+}
